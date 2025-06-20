@@ -468,13 +468,17 @@ def install_js(
 
     if _mermaid_elk_js_url:
         # Add registration of ELK layouts
+        logger.debug("Adding mermaid ELK layout registration JS",app.config.mermaid_init_js)
         app.config.mermaid_init_js = f'import elkLayouts from "{_mermaid_elk_js_url}";mermaid.registerLayoutLoaders(elkLayouts);{app.config.mermaid_init_js}'
+        logger.debug("Adding mermaid ELK layout registration JS2",app.config.mermaid_init_js)
 
 
     if app.config.mermaid_init_js:
 
         # Add the mermaid import from link to the init-js
+        logger.debug("Adding mermaid ELK layout registration JS3",app.config.mermaid_init_js)
         app.config.mermaid_init_js = f'import mermaid from "{_mermaid_js_url}";{app.config.mermaid_init_js}'
+        logger.debug("Adding mermaid ELK layout registration JS4",app.config.mermaid_init_js)
         
         # If mermaid is local the init-call must be placed after `html_js_files` which has a priority of 800.
         priority = app.config.mermaid_init_js_priority if _mermaid_js_url is not None else 801
